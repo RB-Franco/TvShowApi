@@ -96,7 +96,7 @@ namespace TvShowWebApi.Controllers
             }
             else
             {
-                return Ok("User don't exist in database");
+                return BadRequest("User don't exist in database");
             }
         }
 
@@ -106,7 +106,7 @@ namespace TvShowWebApi.Controllers
         public async Task<IActionResult> AddUserIdentity([FromBody] Login login)
         {
             if (string.IsNullOrWhiteSpace(login.Name) || string.IsNullOrWhiteSpace(login.Email) || string.IsNullOrWhiteSpace(login.Password))
-                return Ok("There are some missing filds.");
+                return BadRequest("There are some missing filds.");
 
 
             var user = new User
@@ -132,9 +132,7 @@ namespace TvShowWebApi.Controllers
             if(result2.Succeeded)
                 return Ok("User added successfully.");
             else
-                return Ok("Error confirming  user.");
+                return BadRequest("Error confirming  user.");
         }
-
-
     }
 }

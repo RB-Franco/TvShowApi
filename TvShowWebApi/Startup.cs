@@ -83,6 +83,12 @@ namespace TvShowWebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var urlCliente3 = "http://localhost:4200";
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader().WithOrigins(urlCliente3));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
