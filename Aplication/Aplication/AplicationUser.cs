@@ -1,9 +1,5 @@
 ﻿using Aplication.Interface;
-using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Domain.Interfaces;
 using System.Threading.Tasks;
 
 namespace Aplication.Aplication
@@ -20,6 +16,11 @@ namespace Aplication.Aplication
         public async Task<bool> AddUser(string name, string email, string password)
         {
             return await _IUser.AddUser(name, email, password);
+        }
+
+        public async Task<bool> ValidateUser(string email, string password)
+        {
+            return await _IUser.ValidateUser(email, password);
         }
     }
 }

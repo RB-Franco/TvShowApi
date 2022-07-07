@@ -1,42 +1,40 @@
 ﻿using Entity.Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Configuration
 {
-    public partial class Context : DbContext
+    public class Context : IdentityDbContext<User>
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
         }
 
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<TvShow> TvShow { get; set; }
+        //public virtual DbSet<TvShow> TvShow { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer();
+            {
+                optionsBuilder.UseSqlServer(GetStringConnection());
+                base.OnConfiguring(optionsBuilder);
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(200);
-                entity.Property(e => e.Email).IsRequired().HasMaxLength(200);
-                entity.Property(e => e.Password).IsRequired().HasMaxLength(200);
-            });
+            modelBuilder.Entity<User>().ToTable("AspNetUsers").HasKey(t => t.Id);
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        protected string GetStringConnection()
+        {
+            var strCon = "Data Source=LAPTOP-KAMILLA;Initial Catalog=TvShowsDb;User ID=sa;Password=sa@2021;Persist Security Info=True";
+            return strCon;
+        }
     }
 }

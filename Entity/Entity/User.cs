@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entity.Entity
 {
-    public class User
+    public class User : IdentityUser
     {
-        public long Id { get; set; }
+        [Column("USR_NAME")]
         public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public DateTime CreatedDate { get; set; }
+
+        [Column("USR_CREATEDATE")]
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

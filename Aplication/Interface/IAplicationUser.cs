@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Aplication.Interface
 {
-    interface IAplicationUser
+    public interface IAplicationUser
     {
         Task<bool> AddUser(string name, string email, string password);
+
+        Task<bool> ValidateUser(string email, string password);
     }
 }
