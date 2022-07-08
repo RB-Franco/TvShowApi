@@ -1,15 +1,15 @@
-﻿using Aplication.Interface;
+﻿using Application.Interface;
 using Domain.Interfaces;
 using Entity.Entity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Aplication.Aplication
+namespace Application.Application
 {
-    public class AplicationTvShow : IAplicationTvShow
+    public class ApplicationTvShow : IApplicationTvShow
     {
         private readonly ITvShow _ITvShow;
-        public AplicationTvShow(ITvShow ITvShow)
+        public ApplicationTvShow(ITvShow ITvShow)
         {
             _ITvShow = ITvShow;
         }

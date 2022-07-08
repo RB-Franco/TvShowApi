@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Aplication.Interface
+namespace Application.Interface
 {
-    public interface IAplicationTvShow
+    public interface IApplicationTvShow
     {
         Task<TvShow> SearchById(int id);
         Task<List<TvShow>> SearchAll();

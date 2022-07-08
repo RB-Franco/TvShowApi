@@ -40,6 +40,26 @@ namespace Infrastructure.Repository
             return true;
         }
 
+        public async Task<string> ReturnIdUser(string email)
+        {
+            try
+            {
+
+                using (var context = new Context(_optionsBuilder))
+                {
+                    var user = await context.User
+                                            .Where(x => x.Email.Equals(email))
+                                            .AsNoTracking()
+                                            .FirstOrDefaultAsync();
+                    return user.Id;
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+
         public async Task<bool> ValidateUser(string email, string password)
         {
             try

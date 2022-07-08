@@ -1,61 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using TvShowWorkerService.Models;
 
-namespace Entity.Entity
+namespace TvShowWorkerService.Infrastructure.Entity
 {
     [Table("TB_TVSHOW")]
-    public class TvShow
+    public class WorkerTvShow
     {
         public int Id { get; set; }
-
+        
+        [Column("TS_ReferenceId")]
+        public string ReferenceId { get; set; }
+        
         [Column("TS_Name")]
         public string Name { get; set; }
-
+        
         [Column("TS_Permalink")]
         public string Permalink { get; set; }
-
+        
         [Column("TS_StartDate")]
         public string StartDate { get; set; }
-
+        
         [Column("TS_EndDate")]
         public string EndDate { get; set; }
-
+        
         [Column("TS_Country")]
         public string Country { get; set; }
-
+        
         [Column("TS_Network")]
         public string Network { get; set; }
-
+        
         [Column("TS_Status")]
         public string Status { get; set; }
-
+        
         [Column("TS_Image")]
         public string Image { get; set; }
 
-        [Column("TS_Url")]
-        public string Url { get; set; }
-
-        [Column("TS_Description")]
-        public string Description { get; set; }
-
-        [Column("TS_Description_source")]
-        public string Description_source { get; set; }
-
-        [Column("TS_Runtime")]
-        public int Runtime { get; set; }
-
-        [Column("TS_ImageThumbnailPath")]
-        public string ImageThumbnailPath { get; set; }
-
-        [Column("TS_Genres")]
-        public string Genres { get; set; }
-        
         [Column("TS_CreateDate")]
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
-        [NotMapped]
-        public List<Episode> Episodes { get; set; }        
+        public List<EpisodesModel> Episodes { get; set; }
     }
-
 }

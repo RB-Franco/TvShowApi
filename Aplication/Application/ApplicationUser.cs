@@ -1,14 +1,14 @@
-﻿using Aplication.Interface;
+﻿using Application.Interface;
 using Domain.Interfaces;
 using System.Threading.Tasks;
 
-namespace Aplication.Aplication
+namespace Application.Application
 {
-    public class AplicationUser : IAplicationUser
+    public class ApplicationUser : IApplicationUser
     {
         IUser _IUser;
 
-        public AplicationUser(IUser IUser)
+        public ApplicationUser(IUser IUser)
         {
             _IUser = IUser;
         }
@@ -22,5 +22,11 @@ namespace Aplication.Aplication
         {
             return await _IUser.ValidateUser(email, password);
         }
+
+        public async Task<string> ReturnIdUser(string email)
+        {
+            return await _IUser.ReturnIdUser(email);
+        }
+
     }
 }

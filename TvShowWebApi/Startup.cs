@@ -1,5 +1,5 @@
-using Aplication.Aplication;
-using Aplication.Interface;
+using Application.Application;
+using Application.Interface;
 using Domain.Interfaces;
 using Entity.Entity;
 using Infrastructure.Configuration;
@@ -40,8 +40,8 @@ namespace TvShowWebApi
             services.AddSingleton<IUser, RepositoryUser>();
             services.AddSingleton<ITvShow, RepositoryTvShow>();
 
-            services.AddSingleton<IAplicationUser, AplicationUser>();
-            services.AddSingleton<IAplicationTvShow, AplicationTvShow>();
+            services.AddSingleton<IApplicationUser, ApplicationUser>();
+            services.AddSingleton<IApplicationTvShow, ApplicationTvShow>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(option =>
@@ -100,6 +100,7 @@ namespace TvShowWebApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

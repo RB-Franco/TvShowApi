@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TvShowWebApi", "TvShowWebAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - WebApi", "1 - WebApi", "{FD422970-D9DD-4178-9B5B-EAD7A4B0D103}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Aplication", "2 - Aplication", "{582C900D-1DA9-474D-9980-12EECFAD5D2F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{582C900D-1DA9-474D-9980-12EECFAD5D2F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{3099FB26-64C9-41D2-A3FF-0175DE4E2B7F}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - infrastructure", "4 - i
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Entity", "5 - Entity", "{C423A2C3-0683-4C28-B03B-A690EF1530A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplication", "Aplication\Aplication.csproj", "{CFCCD50C-B9C3-4053-9D68-3BE1B181E3CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Aplication\Application.csproj", "{CFCCD50C-B9C3-4053-9D68-3BE1B181E3CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{C66397CA-7354-4845-96BC-44349DBA3E49}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Worker", "6 - Worker", "{D5AA5B95-FC48-43E7-91AE-FC8B52E25688}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7 - Tests", "7 - Tests", "{4976F0A8-4367-45E2-97AC-F7F3CDA7D1AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TvShowWorkerService", "TvShowWorkerService\TvShowWorkerService.csproj", "{A07FB4FB-67E8-4C09-A8D3-38AB28920305}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{F8F06E73-45D2-4551-9D0D-AB41A2DC23D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8F06E73-45D2-4551-9D0D-AB41A2DC23D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8F06E73-45D2-4551-9D0D-AB41A2DC23D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A07FB4FB-67E8-4C09-A8D3-38AB28920305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A07FB4FB-67E8-4C09-A8D3-38AB28920305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A07FB4FB-67E8-4C09-A8D3-38AB28920305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A07FB4FB-67E8-4C09-A8D3-38AB28920305}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{C66397CA-7354-4845-96BC-44349DBA3E49} = {3099FB26-64C9-41D2-A3FF-0175DE4E2B7F}
 		{8D29A960-17B2-468B-9CAF-739C2B5746CD} = {F94BA022-4940-43C0-8323-CE3FD94259F3}
 		{F8F06E73-45D2-4551-9D0D-AB41A2DC23D9} = {C423A2C3-0683-4C28-B03B-A690EF1530A3}
+		{A07FB4FB-67E8-4C09-A8D3-38AB28920305} = {D5AA5B95-FC48-43E7-91AE-FC8B52E25688}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0692FD7E-9858-44A2-A1AF-3B685F111BB5}

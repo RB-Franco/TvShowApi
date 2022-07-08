@@ -4,14 +4,16 @@ using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220707205145_Create_Table_Show")]
+    partial class Create_Table_Show
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,61 +21,6 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Entity.Entity.Episode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AirDate")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TS_AirDate");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TS_Name");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int")
-                        .HasColumnName("TS_Number");
-
-                    b.Property<int>("Season")
-                        .HasColumnType("int")
-                        .HasColumnName("TS_Season");
-
-                    b.Property<int>("ShowId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShowId");
-
-                    b.ToTable("TB_EPISODE");
-                });
-
-            modelBuilder.Entity("Entity.Entity.Favorites", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ShowId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShowId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("TB_FAVORITES");
-                });
 
             modelBuilder.Entity("Entity.Entity.TvShow", b =>
                 {
@@ -90,29 +37,13 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("TS_CreateDate");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TS_Description");
-
-                    b.Property<string>("Description_source")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TS_Description_source");
-
                     b.Property<string>("EndDate")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("TS_EndDate");
 
-                    b.Property<string>("Genres")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TS_Genres");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("TS_Image");
-
-                    b.Property<string>("ImageThumbnailPath")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TS_ImageThumbnailPath");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)")
@@ -126,9 +57,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("TS_Permalink");
 
-                    b.Property<int>("Runtime")
-                        .HasColumnType("int")
-                        .HasColumnName("TS_Runtime");
+                    b.Property<string>("ReferenceId")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("TS_ReferenceId");
 
                     b.Property<string>("StartDate")
                         .HasColumnType("nvarchar(max)")
@@ -137,10 +68,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("TS_Status");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("TS_Url");
 
                     b.HasKey("Id");
 
@@ -353,34 +280,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Entity.Entity.Episode", b =>
-                {
-                    b.HasOne("Entity.Entity.TvShow", "TvShow")
-                        .WithMany()
-                        .HasForeignKey("ShowId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TvShow");
-                });
-
-            modelBuilder.Entity("Entity.Entity.Favorites", b =>
-                {
-                    b.HasOne("Entity.Entity.TvShow", "TvShow")
-                        .WithMany()
-                        .HasForeignKey("ShowId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entity.Entity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("TvShow");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
