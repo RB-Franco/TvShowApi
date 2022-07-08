@@ -17,7 +17,6 @@ namespace TvShowWorkerService.Infrastructure.Repository
         {
             _optionsBuilder = new DbContextOptions<WorkenContext>();
         }
-
         public async Task<bool> AddTvShow(TvShowModel TvShows)
         {
             try
