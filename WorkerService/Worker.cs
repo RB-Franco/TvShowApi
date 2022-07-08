@@ -18,12 +18,26 @@ namespace WorkerService
         private readonly ILogger<Worker> _logger;
         private readonly IWorkerTvShow _IWorkerTvShow;
         private int SearchPage = 1;
+        HttpClient client = new HttpClient();
+
 
         public Worker(ILogger<Worker> logger, IWorkerTvShow IWorkerTvShow)
         {
             _logger = logger;
             _IWorkerTvShow = IWorkerTvShow;
     }
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            client = new HttpClient();
+            return base.StartAsync(cancellationToken);
+        }
+
+        public override Task StopAsync(CancellationToken cancellationToken)
+        {
+            client.Dispose();
+            _logger.LogInformation("Worker has been stoped", DateTimeOffset.Now);
+            return base.StopAsync(cancellationToken);
+        }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -53,7 +67,6 @@ namespace WorkerService
         private async Task<bool> GetTvShowsPerPage()
         {
 
-            var client = new HttpClient();
             var request = new HttpRequestMessage
             {
 

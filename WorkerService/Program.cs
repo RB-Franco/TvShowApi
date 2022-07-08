@@ -1,9 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Events;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WorkerService.Domain.Inteface;
 using WorkerService.Infrastructure.Repository;
 
@@ -13,15 +12,39 @@ namespace WorkerService
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                .Enrich.FromLogContext()
+                .WriteTo.File(@"C:\Users\kamil\source\repos\Publish\")
+                .CreateLogger();
+
+            try
+            {
+                Log.Information( "Starting up the service");
+                CreateHostBuilder(args).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "There eas a problem starting the service");
+                throw;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<Worker>();
                     services.AddSingleton<IWorkerTvShow, WorkerTvShowRepository>();
-                });
+                    services.AddHttpClient();
+                })
+                .UseSerilog();
     }
 }
