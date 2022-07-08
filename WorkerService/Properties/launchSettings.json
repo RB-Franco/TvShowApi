@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "TvShowWorkerService": {
+    "WorkerService": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "environmentVariables": {

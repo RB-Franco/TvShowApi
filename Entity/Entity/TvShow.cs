@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entity.Entity
@@ -7,7 +8,12 @@ namespace Entity.Entity
     [Table("TB_TVSHOW")]
     public class TvShow
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [Column("TS_ReferenceId")]
+        public string ReferenceId { get; set; }
 
         [Column("TS_Name")]
         public string Name { get; set; }
@@ -31,7 +37,7 @@ namespace Entity.Entity
         public string Status { get; set; }
 
         [Column("TS_Image")]
-        public string Image { get; set; }
+        public string ImagePath { get; set; }
 
         [Column("TS_Url")]
         public string Url { get; set; }
@@ -40,7 +46,7 @@ namespace Entity.Entity
         public string Description { get; set; }
 
         [Column("TS_Description_source")]
-        public string Description_source { get; set; }
+        public string DescriptionSource { get; set; }
 
         [Column("TS_Runtime")]
         public int Runtime { get; set; }
@@ -50,12 +56,11 @@ namespace Entity.Entity
 
         [Column("TS_Genres")]
         public string Genres { get; set; }
-        
+
         [Column("TS_CreateDate")]
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
         [NotMapped]
-        public List<Episode> Episodes { get; set; }        
-    }
-
+        public List<Episode> Episodes { get; set; }
+    }       
 }

@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using TvShowWorkerService.Infrastructure.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WorkerService.Infrastructure.Entity;
 
-namespace TvShowWorkerService.Infrastructure.Configuration
+namespace WorkerService.Infrastructure.Configuration
 {
     public class WorkenContext : IdentityDbContext
     {

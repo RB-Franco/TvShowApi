@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TvShowWorkerService.Models
+namespace WorkerService.Models
 {
     public class EpisodesModel
     {

@@ -1,9 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TvShowWorkerService.Domain.Interface;
-using TvShowWorkerService.Infrastructure.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WorkerService.Domain.Inteface;
+using WorkerService.Infrastructure.Repository;
 
-namespace TvShowWorkerService
+namespace WorkerService
 {
     public class Program
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TvShowWorkerService.Infrastructure.Entity
+namespace WorkerService.Infrastructure.Entity
 {
     [Table("TB_EPISODE")]
     public class WorkerEpisode
