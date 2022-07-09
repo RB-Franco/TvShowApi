@@ -13,6 +13,8 @@ namespace Domain.Interfaces
         Task<Favorite> AddTvShowToFavorites(TvShow tvshow, string userId);
         Task<bool> RemoveTvShowToFavorites(Favorite favorite);
         Task<IEnumerable<Episode>> GetEpisodesByTvShowId(int tvShowId);
+        Task<TvShow> GetTvShowById(int tvShowId);
+        
 
     }
 }

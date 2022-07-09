@@ -91,5 +91,18 @@ namespace Infrastructure.Repository
                 return result;
             }
         }
+        public async Task<TvShow> GetTvShowById(int tvShowId)
+        {
+            using (var context = new Context(_OptionsBuilder))
+            {
+                var result = await context.TvShow
+                         .Where(x => x.Id.Equals(tvShowId))
+                         .AsNoTracking()
+                         .FirstOrDefaultAsync();
+
+                return result;
+            }
+        }
+        
     }
 }

@@ -3,6 +3,7 @@ using Entity.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace TvShowWebApi.Controllers
@@ -29,11 +30,14 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/getEpisodesByTvShowId")]
-        public async Task<IActionResult> GetEpisodesByTvShowId([FromQuery] int tvShowId)
+        [HttpGet("/api/GetTvShowDetailById")]
+        public async Task<IActionResult> GetTvShowDetailById([FromQuery] int tvShowId)
         {
+            var tvShow = await _IApplicationTvShow.GetTvShowById(tvShowId);
             var result = await _IApplicationTvShow.GetEpisodesByTvShowId(tvShowId);
-            return Ok(result);
+            tvShow.Episodes = result.ToList();
+
+            return Ok(tvShow);
         }
 
         [Authorize]

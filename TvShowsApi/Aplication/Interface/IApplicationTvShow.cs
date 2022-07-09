@@ -9,6 +9,7 @@ namespace Application.Interface
     {
         Task<IEnumerable<TvShowModel>> GetAllTvShows();
         Task<IEnumerable<TvShowModel>> SearchByName(string name);
+        Task<TvShowModel> GetTvShowById(int tvShowId);
         Task<IEnumerable<EpisodeModel>> GetEpisodesByTvShowId(int tvShowId);
         Task<IEnumerable<FavoriteModel>> GetAllFavoritesByUserId(string userId);
         Task<FavoriteModel> AddTvShowToFavorites(TvShowModel tvShow, string userId);

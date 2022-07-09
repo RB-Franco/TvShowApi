@@ -53,5 +53,12 @@ namespace Application.Application
             var response = await _ITvShow.GetEpisodesByTvShowId(tvShowId);
             return Mapper.Map< IEnumerable<Episode>, IEnumerable<EpisodeModel>>(response);
         }
+
+        public async Task<TvShowModel> GetTvShowById(int tvShowId)
+        {
+            var response = await _ITvShow.GetTvShowById(tvShowId);
+            return Mapper.Map<TvShow, TvShowModel>(response);
+        }
+        
     }
 }
