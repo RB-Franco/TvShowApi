@@ -7,12 +7,11 @@ namespace Application.Interface
 {
     public interface IApplicationTvShow
     {
-        Task<TvShowModel> SearchById(int id);
-        Task<IEnumerable<TvShowModel>> SearchAll();
+        Task<IEnumerable<TvShowModel>> GetAllTvShows();
         Task<IEnumerable<TvShowModel>> SearchByName(string name);
         Task<IEnumerable<EpisodeModel>> GetEpisodesByTvShowId(int tvShowId);
         Task<IEnumerable<FavoriteModel>> GetAllFavoritesByUserId(string userId);
-        Task<TvShowModel> AddTvShowToFavorites(TvShowModel tvShow, string userId);
+        Task<FavoriteModel> AddTvShowToFavorites(TvShowModel tvShow, string userId);
         Task<bool> RemoveTvShowToFavorites(FavoriteModel favorite);
     }
 }

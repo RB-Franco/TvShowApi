@@ -20,16 +20,16 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/GetAllTvShows")]        
+        [HttpGet("/api/getAllTvShows")]        
         public async Task<IActionResult> GetAllTvShows()
         {
-            var result = await _IApplicationTvShow.SearchAll();
+            var result = await _IApplicationTvShow.GetAllTvShows();
             return Ok(result);
         }
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/GetEpisodesByTvShowId")]
+        [HttpGet("/api/getEpisodesByTvShowId")]
         public async Task<IActionResult> GetEpisodesByTvShowId([FromQuery] int tvShowId)
         {
             var result = await _IApplicationTvShow.GetEpisodesByTvShowId(tvShowId);
@@ -38,7 +38,7 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/GetAllFavoritesByUserId")]
+        [HttpGet("/api/getAllFavoritesByUserId")]
         public async Task<IActionResult> GetAllFavoritesByUserId([FromQuery] string userId)
         {
             var result = await _IApplicationTvShow.GetAllFavoritesByUserId(userId);
@@ -47,7 +47,7 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/AddTvShowToFavorites")]
+        [HttpPost("/api/addTvShowToFavorites")]
         public async Task<IActionResult> AddTvShowToFavorites([FromBody] TvShowModel tvShow, [FromQuery] string userId)
         {
             var result = await _IApplicationTvShow.AddTvShowToFavorites(tvShow, userId);
@@ -56,7 +56,7 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpDelete("/api/RemoveTvShowToFavorites")]
+        [HttpDelete("/api/removeTvShowToFavorites")]
         public async Task<IActionResult> RemoveTvShowToFavorites([FromBody] FavoriteModel favorite)
         {
             var result = await _IApplicationTvShow.RemoveTvShowToFavorites(favorite);

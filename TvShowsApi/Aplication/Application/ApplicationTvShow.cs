@@ -16,16 +16,10 @@ namespace Application.Application
             _ITvShow = ITvShow;
         }
 
-        public async Task<IEnumerable<TvShowModel>> SearchAll()
+        public async Task<IEnumerable<TvShowModel>> GetAllTvShows()
         {
-            var response = await _ITvShow.SearchAll();
+            var response = await _ITvShow.GetAllTvShows();
             return Mapper.Map<IEnumerable<TvShow>, IEnumerable<TvShowModel>>(response);
-        }
-
-        public async Task<TvShowModel> SearchById(int id)
-        {
-            var response = await _ITvShow.SearchById(id);
-            return Mapper.Map<TvShow, TvShowModel>(response);
         }
 
         public async Task<IEnumerable<TvShowModel>> SearchByName(string name)
@@ -40,12 +34,12 @@ namespace Application.Application
             return Mapper.Map<IEnumerable<Favorite>, IEnumerable<FavoriteModel>>(response);
         }
 
-        public async Task<TvShowModel> AddTvShowToFavorites(TvShowModel tvShow, string userId)
+        public async Task<FavoriteModel> AddTvShowToFavorites(TvShowModel tvShow, string userId)
         {
 
             var request = Mapper.Map<TvShowModel, TvShow>(tvShow);
             var response = await _ITvShow.AddTvShowToFavorites(request, userId);
-            return Mapper.Map<TvShow, TvShowModel>(response);
+            return Mapper.Map<Favorite, FavoriteModel>(response);
         }
 
         public async Task<bool> RemoveTvShowToFavorites(FavoriteModel favorite)

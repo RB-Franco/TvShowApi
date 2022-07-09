@@ -17,7 +17,7 @@ namespace Infrastructure.Repository
             _OptionsBuilder = new DbContextOptions<Context>();
         }
 
-        public async Task<IEnumerable<TvShow>> SearchAll()
+        public async Task<IEnumerable<TvShow>> GetAllTvShows()
         {
             using (var context = new Context(_OptionsBuilder))
             {
@@ -25,15 +25,6 @@ namespace Infrastructure.Repository
                                         .AsNoTracking()
                                         .ToListAsync();
                 return result;              
-            }
-        }
-
-        public async Task<TvShow> SearchById(int Id)
-        {
-            using (var context = new Context(_OptionsBuilder))
-            {
-                var result = await context.TvShow.FindAsync(Id);
-                return result;
             }
         }
 
@@ -61,12 +52,12 @@ namespace Infrastructure.Repository
             }
         }
 
-        public async Task<TvShow> AddTvShowToFavorites(TvShow tvShow, string userId)
+        public async Task<Favorite> AddTvShowToFavorites(TvShow tvShow, string userId)
         {
 
             using (var context = new Context(_OptionsBuilder))
             {
-                await context.Favorites.AddAsync(new Favorite
+                var result = await context.Favorites.AddAsync(new Favorite
                 {
                     ShowId = tvShow.Id,
                     UserId = userId
@@ -74,8 +65,8 @@ namespace Infrastructure.Repository
                 });
                 await context.SaveChangesAsync();
 
+                return result.Entity;
             }
-            return tvShow;
         }
 
         public async Task<bool> RemoveTvShowToFavorites(Favorite favorite)
