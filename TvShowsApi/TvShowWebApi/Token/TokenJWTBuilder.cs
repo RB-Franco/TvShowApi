@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace TvShowWebApi.Token
 {
@@ -59,7 +58,6 @@ namespace TvShowWebApi.Token
             this.expiryInMinutes = expiryInMinutes;
             return this;
         }
-
 
         private void EnsureArguments()
         {

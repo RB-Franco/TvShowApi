@@ -1,5 +1,7 @@
 using Application.Application;
+using Application.AutoMapper;
 using Application.Interface;
+using AutoMapper;
 using Domain.Interfaces;
 using Entity.Entity;
 using Infrastructure.Configuration;
@@ -31,6 +33,8 @@ namespace TvShowWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Mapper.Initialize(AutoMapperConfiguration.RegisterMappings);
+
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

@@ -10,8 +10,9 @@ namespace Domain.Interfaces
         Task<TvShow> SearchById(int Id);
         Task<IEnumerable<TvShow>> SearchAll();
         Task<IEnumerable<TvShow>> SearchByName(string name);
-        Task<TvShow> AddTvShowToFavorites(TvShow tvshow);
-        Task<TvShow> RemoveTvShowToFavorites(Favorites favorite);
+        Task<IEnumerable<Favorite>> GetAllFavoritesByUserId(string userId);
+        Task<TvShow> AddTvShowToFavorites(TvShow tvshow, string userId);
+        Task<bool> RemoveTvShowToFavorites(Favorite favorite);
         Task<IEnumerable<Episode>> GetEpisodesByTvShowId(int tvShowId);
 
     }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TvShowWebApi", "TvShowWebApi\TvShowWebApi.csproj", "{BE4E0A8C-B7CC-4A28-B8A8-12F93C4AE2ED}"
 EndProject
@@ -25,9 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Worker", "6 - Worker", "{D5AA5B95-FC48-43E7-91AE-FC8B52E25688}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7 - Tests", "7 - Tests", "{4976F0A8-4367-45E2-97AC-F7F3CDA7D1AA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8 - Tests", "8 - Tests", "{4976F0A8-4367-45E2-97AC-F7F3CDA7D1AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService", "WorkerService\WorkerService.csproj", "{8486BB73-EB87-43EA-AFE3-481D992FB301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkerService", "WorkerService\WorkerService.csproj", "{8486BB73-EB87-43EA-AFE3-481D992FB301}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7 - Models", "7 - Models", "{E22416EF-FF2F-4C1C-ABF3-39207EAF0C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{D73FAA2C-D0E4-44CC-8E73-41A0A2BC63A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,10 @@ Global
 		{8486BB73-EB87-43EA-AFE3-481D992FB301}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8486BB73-EB87-43EA-AFE3-481D992FB301}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8486BB73-EB87-43EA-AFE3-481D992FB301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D73FAA2C-D0E4-44CC-8E73-41A0A2BC63A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D73FAA2C-D0E4-44CC-8E73-41A0A2BC63A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D73FAA2C-D0E4-44CC-8E73-41A0A2BC63A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D73FAA2C-D0E4-44CC-8E73-41A0A2BC63A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +78,7 @@ Global
 		{8D29A960-17B2-468B-9CAF-739C2B5746CD} = {F94BA022-4940-43C0-8323-CE3FD94259F3}
 		{F8F06E73-45D2-4551-9D0D-AB41A2DC23D9} = {C423A2C3-0683-4C28-B03B-A690EF1530A3}
 		{8486BB73-EB87-43EA-AFE3-481D992FB301} = {D5AA5B95-FC48-43E7-91AE-FC8B52E25688}
+		{D73FAA2C-D0E4-44CC-8E73-41A0A2BC63A3} = {E22416EF-FF2F-4C1C-ABF3-39207EAF0C30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0692FD7E-9858-44A2-A1AF-3B685F111BB5}

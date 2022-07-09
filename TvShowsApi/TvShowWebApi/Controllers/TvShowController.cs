@@ -2,8 +2,8 @@
 using Entity.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Models;
 using System.Threading.Tasks;
-using TvShowWebApi.Models;
 
 namespace TvShowWebApi.Controllers
 {
@@ -38,24 +38,26 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/AddTvShowToFavorites")]
-        public async Task<IActionResult> AddTvShowToFavorites([FromBody] TvShowModel tvShow)
+        [HttpGet("/api/GetAllFavoritesByUserId")]
+        public async Task<IActionResult> GetAllFavoritesByUserId([FromQuery] string userId)
         {
+            var result = await _IApplicationTvShow.GetAllFavoritesByUserId(userId);
+            return Ok(result);
+        }
 
-            var request = new TvShow
-            {
-                Id = tvShow.Id,
-                ReferenceId = tvShow.ReferenceId
-            };
-
-            var result = await _IApplicationTvShow.AddTvShowToFavorites(request);
+        [Authorize]
+        [Produces("application/json")]
+        [HttpPost("/api/AddTvShowToFavorites")]
+        public async Task<IActionResult> AddTvShowToFavorites([FromBody] TvShowModel tvShow, [FromQuery] string userId)
+        {
+            var result = await _IApplicationTvShow.AddTvShowToFavorites(tvShow, userId);
             return Ok(result);
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/RemoveTvShowToFavorites")]
-        public async Task<IActionResult> RemoveTvShowToFavorites([FromBody] Favorites favorite)
+        public async Task<IActionResult> RemoveTvShowToFavorites([FromBody] FavoriteModel favorite)
         {
             var result = await _IApplicationTvShow.RemoveTvShowToFavorites(favorite);
             return Ok(result);

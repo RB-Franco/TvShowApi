@@ -13,7 +13,7 @@ namespace Infrastructure.Configuration
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<TvShow> TvShow { get; set; }
         public virtual DbSet<Episode> Episode { get; set; }
-        public virtual DbSet<Favorites> Favorites { get; set; }
+        public virtual DbSet<Favorite> Favorites { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

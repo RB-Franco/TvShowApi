@@ -2,7 +2,6 @@
 using Entity.Entity;
 using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,17 +21,10 @@ namespace Infrastructure.Repository
         {
             using (var context = new Context(_OptionsBuilder))
             {
-                try
-                {
-                    var result = await context.TvShow
-                                            .AsNoTracking()
-                                            .ToListAsync();
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
+                var result = await context.TvShow
+                                        .AsNoTracking()
+                                        .ToListAsync();
+                return result;              
             }
         }
 
@@ -57,30 +49,43 @@ namespace Infrastructure.Repository
             }
         }
 
-        public async Task<TvShow> AddTvShowToFavorites(TvShow tvShow)
+        public async Task<IEnumerable<Favorite>> GetAllFavoritesByUserId(string userId)
+        {
+            using (var context = new Context(_OptionsBuilder))
+            {
+                var result = await context.Favorites
+                                        .Where(x=> x.UserId.Equals(userId))
+                                        .AsNoTracking()
+                                        .ToListAsync();
+                return result;                
+            }
+        }
+
+        public async Task<TvShow> AddTvShowToFavorites(TvShow tvShow, string userId)
         {
 
             using (var context = new Context(_OptionsBuilder))
             {
-                await context.Favorites.AddAsync(new Favorites
+                await context.Favorites.AddAsync(new Favorite
                 {
-                    ShowId = tvShow.Id
+                    ShowId = tvShow.Id,
+                    UserId = userId
 
                 });
                 await context.SaveChangesAsync();
 
             }
-            return null;
+            return tvShow;
         }
 
-        public async Task<TvShow> RemoveTvShowToFavorites(Favorites favorite)
+        public async Task<bool> RemoveTvShowToFavorites(Favorite favorite)
         {
             using (var context = new Context(_OptionsBuilder))
             {
                 context.Favorites.Remove(favorite);
                 await context.SaveChangesAsync();
             }
-            return null;
+            return true;
         }
 
         public async Task<IEnumerable<Episode>> GetEpisodesByTvShowId(int tvShowId)
@@ -95,6 +100,5 @@ namespace Infrastructure.Repository
                 return result;
             }
         }
-
     }
 }

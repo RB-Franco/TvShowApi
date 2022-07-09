@@ -3,7 +3,7 @@
 namespace Entity.Entity
 {
     [Table("TB_FAVORITES")]
-    public class Favorites
+    public class Favorite
     {
         public int Id { get; set; }
 

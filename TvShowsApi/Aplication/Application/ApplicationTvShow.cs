@@ -1,6 +1,8 @@
 ﻿using Application.Interface;
+using AutoMapper;
 using Domain.Interfaces;
 using Entity.Entity;
+using Models.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,34 +16,48 @@ namespace Application.Application
             _ITvShow = ITvShow;
         }
 
-        public async Task<IEnumerable<TvShow>> SearchAll()
+        public async Task<IEnumerable<TvShowModel>> SearchAll()
         {
-            return await _ITvShow.SearchAll();
+            var response = await _ITvShow.SearchAll();
+            return Mapper.Map<IEnumerable<TvShow>, IEnumerable<TvShowModel>>(response);
         }
 
-        public async Task<TvShow> SearchById(int id)
+        public async Task<TvShowModel> SearchById(int id)
         {
-            return await _ITvShow.SearchById(id);
+            var response = await _ITvShow.SearchById(id);
+            return Mapper.Map<TvShow, TvShowModel>(response);
         }
 
-        public async Task<IEnumerable<TvShow>> SearchByName(string name)
+        public async Task<IEnumerable<TvShowModel>> SearchByName(string name)
         {
-            return await _ITvShow.SearchByName(name);
+            var response = await _ITvShow.SearchByName(name);
+            return Mapper.Map<IEnumerable<TvShow>, IEnumerable<TvShowModel>>(response);
         }
 
-        public async Task<TvShow> AddTvShowToFavorites(TvShow tvShow)
+        public async Task<IEnumerable<FavoriteModel>> GetAllFavoritesByUserId(string userId)
         {
-            return await _ITvShow.AddTvShowToFavorites(tvShow);
+            var response = await _ITvShow.GetAllFavoritesByUserId(userId);
+            return Mapper.Map<IEnumerable<Favorite>, IEnumerable<FavoriteModel>>(response);
         }
 
-        public async Task<TvShow> RemoveTvShowToFavorites(Favorites favorite)
+        public async Task<TvShowModel> AddTvShowToFavorites(TvShowModel tvShow, string userId)
         {
-            return await _ITvShow.RemoveTvShowToFavorites(favorite);
+
+            var request = Mapper.Map<TvShowModel, TvShow>(tvShow);
+            var response = await _ITvShow.AddTvShowToFavorites(request, userId);
+            return Mapper.Map<TvShow, TvShowModel>(response);
         }
 
-        public async Task<IEnumerable<Episode>> GetEpisodesByTvShowId(int tvShowId)
+        public async Task<bool> RemoveTvShowToFavorites(FavoriteModel favorite)
         {
-            return await _ITvShow.GetEpisodesByTvShowId(tvShowId);
+            var request = Mapper.Map<FavoriteModel, Favorite>(favorite);
+            return await _ITvShow.RemoveTvShowToFavorites(request);
+        }
+
+        public async Task<IEnumerable<EpisodeModel>> GetEpisodesByTvShowId(int tvShowId)
+        {
+            var response = await _ITvShow.GetEpisodesByTvShowId(tvShowId);
+            return Mapper.Map< IEnumerable<Episode>, IEnumerable<EpisodeModel>>(response);
         }
     }
 }

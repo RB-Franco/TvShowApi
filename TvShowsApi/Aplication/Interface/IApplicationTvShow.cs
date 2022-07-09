@@ -1,4 +1,5 @@
 ﻿using Entity.Entity;
+using Models.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,11 +7,12 @@ namespace Application.Interface
 {
     public interface IApplicationTvShow
     {
-        Task<TvShow> SearchById(int id);
-        Task<IEnumerable<TvShow>> SearchAll();
-        Task<IEnumerable<TvShow>> SearchByName(string name);
-        Task<TvShow> AddTvShowToFavorites(TvShow tvShow);
-        Task<TvShow> RemoveTvShowToFavorites(Favorites favorite);
-        Task<IEnumerable<Episode>> GetEpisodesByTvShowId(int tvShowId);
+        Task<TvShowModel> SearchById(int id);
+        Task<IEnumerable<TvShowModel>> SearchAll();
+        Task<IEnumerable<TvShowModel>> SearchByName(string name);
+        Task<IEnumerable<EpisodeModel>> GetEpisodesByTvShowId(int tvShowId);
+        Task<IEnumerable<FavoriteModel>> GetAllFavoritesByUserId(string userId);
+        Task<TvShowModel> AddTvShowToFavorites(TvShowModel tvShow, string userId);
+        Task<bool> RemoveTvShowToFavorites(FavoriteModel favorite);
     }
 }
