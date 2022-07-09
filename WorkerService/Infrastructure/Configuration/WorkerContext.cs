@@ -31,7 +31,7 @@ namespace WorkerService.Infrastructure.Configuration
 
         protected string GetStringConnection()
         {
-            var strCon = "Data Source=LAPTOP-KAMILLA;Initial Catalog=TvShowsDb;User ID=sa;Password=sa@2021;Persist Security Info=True";
+            var strCon = "Data Source=LAPTOP-R5VBMMC0\\SQLEXPRESS;Initial Catalog=TvShowsDb;User ID=sa;Password=sa;Persist Security Info=True";
             return strCon;
         }
     }

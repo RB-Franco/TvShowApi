@@ -13,7 +13,7 @@ namespace Entity.Entity
         public int Id { get; set; }
 
         [Column("TS_ReferenceId")]
-        public string ReferenceId { get; set; }
+        public int ReferenceId { get; set; }
 
         [Column("TS_Name")]
         public string Name { get; set; }

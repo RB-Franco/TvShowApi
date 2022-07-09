@@ -64,12 +64,16 @@ namespace WorkerService
             return result;
         }
 
+        private async Task<bool> RemoveTvShowsEpisodes(TvShowModel tvShow)
+        {
+            var result = await _IWorkerTvShow.RemoveTvShowEpisodes(tvShow);
+            return result;
+        }
+
         private async Task<bool> GetTvShowsPerPage()
         {
-
             var request = new HttpRequestMessage
             {
-
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"https://www.episodate.com/api/most-popular?page={SearchPage}")
             };
@@ -89,7 +93,9 @@ namespace WorkerService
                             {
                                 if (await AddTvShows(tvShowDetail))
                                 {
-                                    await AddTvShowsEpisodes(tvShowDetail.Episodes, tvShowDetail.ReferenceId);
+                                    var added = await AddTvShowsEpisodes(tvShowDetail.Episodes, tvShowDetail.ReferenceId);
+                                    if (!added)
+                                        await RemoveTvShowsEpisodes(tvShowDetail);
                                 }
                             }
                         }

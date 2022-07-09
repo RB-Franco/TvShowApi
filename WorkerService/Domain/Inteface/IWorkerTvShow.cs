@@ -8,5 +8,7 @@ namespace WorkerService.Domain.Inteface
     {
         Task<bool> AddTvShow(TvShowModel model);
         Task<bool> AddTvShowEpisodes(IEnumerable<EpisodesModel> model, int referenceId);
+        Task<bool> RemoveTvShowEpisodes(TvShowModel model);
+
     }
 }

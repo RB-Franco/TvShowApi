@@ -85,6 +85,41 @@ namespace WorkerService.Infrastructure.Repository
             return true;
         }
 
+        public async Task<bool> RemoveTvShowEpisodes(TvShowModel tvShow)
+        {
+            try
+            {
+                var IdTvShow = await GetIdTvShowByReferenceId(tvShow.ReferenceId);
+                using (var context = new WorkenContext(_optionsBuilder))
+                {
+                    context.WorkerTvShow.Remove(new WorkerTvShow
+                    {
+                        Id = IdTvShow,
+                        ReferenceId = tvShow.ReferenceId,
+                        Name = tvShow.Name,
+                        Permalink = tvShow.Permalink,
+                        StartDate = tvShow.StartDate,
+                        EndDate = tvShow.EndDate,
+                        Country = tvShow.Country,
+                        Network = tvShow.Network,
+                        Status = tvShow.Status,
+                        ImagePath = tvShow.ImagePath,
+                        Url = tvShow.Url,
+                        Description = tvShow.Description,
+                        DescriptionSource = tvShow.DescriptionSource,
+                        Runtime = tvShow.Runtime,
+                        Genres = string.Join(",", tvShow.Genres)
+                    });
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private async Task<int> GetIdTvShowByReferenceId(int referenceId)
         {
             try
@@ -92,7 +127,7 @@ namespace WorkerService.Infrastructure.Repository
                 using (var context = new WorkenContext(_optionsBuilder))
                 {
                     var result = await context.WorkerTvShow
-                                        .Where(x => x.ReferenceId.Equals(referenceId))
+                                        .Where(x => x.ReferenceId == referenceId)
                                         .AsNoTracking()
                                         .FirstOrDefaultAsync();
                     return result.Id;
@@ -101,8 +136,8 @@ namespace WorkerService.Infrastructure.Repository
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message, ex);
+                return 0;
             }
-            return int.MinValue;
         }
     }
 }
