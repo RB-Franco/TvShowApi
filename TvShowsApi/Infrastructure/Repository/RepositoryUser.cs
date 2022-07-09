@@ -74,7 +74,6 @@ namespace Infrastructure.Repository
             {
                 return false;
             }
-            return true;
         }
     }
 }

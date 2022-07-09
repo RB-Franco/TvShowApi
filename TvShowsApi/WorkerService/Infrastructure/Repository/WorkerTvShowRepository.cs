@@ -115,6 +115,7 @@ namespace WorkerService.Infrastructure.Repository
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message, ex);
                 return false;
             }
             return true;

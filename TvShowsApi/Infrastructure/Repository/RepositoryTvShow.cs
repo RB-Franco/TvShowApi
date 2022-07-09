@@ -3,6 +3,7 @@ using Entity.Entity;
 using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
@@ -16,7 +17,7 @@ namespace Infrastructure.Repository
             _OptionsBuilder = new DbContextOptions<Context>();
         }
 
-        public async Task<List<TvShow>> SearchAll()
+        public async Task<IEnumerable<TvShow>> SearchAll()
         {
             using (var date = new Context(_OptionsBuilder))
             {
@@ -32,13 +33,33 @@ namespace Infrastructure.Repository
             }
         }
 
-        public async Task<List<TvShow>> SearchByName(string name)
+        public async Task<IEnumerable<TvShow>> SearchByName(string name)
         {
             using (var date = new Context(_OptionsBuilder))
             {
-                var result = await date.Set<TvShow>().AsNoTracking().ToListAsync();
-                return result.FindAll(x => x.Name == name);
+                var result = await date.Set<TvShow>()
+                                        .Where(x=> x.Name.Equals(name))
+                                        .AsNoTracking()
+                                        .ToListAsync();
+                return result;
             }
+        }
+
+        public async Task<TvShow> AddTvShowToFavorites(string name)
+        {
+            return null;
+        }
+
+        public async Task<TvShow> RemoveTvShowToFavorites(string name)
+        {
+            return null;
+
+        }
+
+        public async Task<IEnumerable<Episode>> GetEpisodesByTvShow(string name)
+        {
+            return null;
+
         }
 
     }

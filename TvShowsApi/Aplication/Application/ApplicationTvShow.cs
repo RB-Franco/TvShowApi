@@ -13,7 +13,8 @@ namespace Application.Application
         {
             _ITvShow = ITvShow;
         }
-        public async Task<List<TvShow>> SearchAll()
+
+        public async Task<IEnumerable<TvShow>> SearchAll()
         {
             return await _ITvShow.SearchAll();
         }
@@ -23,9 +24,24 @@ namespace Application.Application
             return await _ITvShow.SearchById(id);
         }
 
-        public async Task<List<TvShow>> SearchByName(string name)
+        public async Task<IEnumerable<TvShow>> SearchByName(string name)
         {
             return await _ITvShow.SearchByName(name);
+        }
+
+        public async Task<TvShow> AddTvShowToFavorites(string name)
+        {
+            return await _ITvShow.AddTvShowToFavorites(name);
+        }
+
+        public async Task<TvShow> RemoveTvShowToFavorites(string name)
+        {
+            return await _ITvShow.RemoveTvShowToFavorites(name);
+        }
+
+        public async Task<IEnumerable<Episode>> GetEpisodesByTvShow(string name)
+        {
+            return await _ITvShow.GetEpisodesByTvShow(name);
         }
     }
 }
