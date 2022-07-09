@@ -34,6 +34,7 @@ namespace TvShowWebApi
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<Context>();
 

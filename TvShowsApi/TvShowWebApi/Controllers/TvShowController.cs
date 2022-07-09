@@ -1,7 +1,9 @@
 ﻿using Application.Interface;
+using Entity.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using TvShowWebApi.Models;
 
 namespace TvShowWebApi.Controllers
 {
@@ -27,28 +29,35 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/GetEpisodesByTvShow")]
-        public async Task<IActionResult> GetEpisodesByTvShow(string name)
+        [HttpGet("/api/GetEpisodesByTvShowId")]
+        public async Task<IActionResult> GetEpisodesByTvShowId([FromQuery] int tvShowId)
         {
-            var result = await _IApplicationTvShow.GetEpisodesByTvShow(name);
+            var result = await _IApplicationTvShow.GetEpisodesByTvShowId(tvShowId);
             return Ok(result);
         }
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/AddTvShowToFavorites")]
-        public async Task<IActionResult> AddTvShowToFavorites(string name)
+        [HttpPost("/api/AddTvShowToFavorites")]
+        public async Task<IActionResult> AddTvShowToFavorites([FromBody] TvShowModel tvShow)
         {
-            var result = await _IApplicationTvShow.AddTvShowToFavorites(name);
+
+            var request = new TvShow
+            {
+                Id = tvShow.Id,
+                ReferenceId = tvShow.ReferenceId
+            };
+
+            var result = await _IApplicationTvShow.AddTvShowToFavorites(request);
             return Ok(result);
         }
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/AddTvShowToFavorites")]
-        public async Task<IActionResult> RemoveTvShowToFavorites(string name)
+        [HttpDelete("/api/RemoveTvShowToFavorites")]
+        public async Task<IActionResult> RemoveTvShowToFavorites([FromBody] Favorites favorite)
         {
-            var result = await _IApplicationTvShow.RemoveTvShowToFavorites(name);
+            var result = await _IApplicationTvShow.RemoveTvShowToFavorites(favorite);
             return Ok(result);
         }
 

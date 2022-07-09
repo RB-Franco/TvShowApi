@@ -9,8 +9,8 @@ namespace Application.Interface
         Task<TvShow> SearchById(int id);
         Task<IEnumerable<TvShow>> SearchAll();
         Task<IEnumerable<TvShow>> SearchByName(string name);
-        Task<TvShow> AddTvShowToFavorites(string name);
-        Task<TvShow> RemoveTvShowToFavorites(string name);
-        Task<IEnumerable<Episode>> GetEpisodesByTvShow(string name);
+        Task<TvShow> AddTvShowToFavorites(TvShow tvShow);
+        Task<TvShow> RemoveTvShowToFavorites(Favorites favorite);
+        Task<IEnumerable<Episode>> GetEpisodesByTvShowId(int tvShowId);
     }
 }

@@ -29,19 +29,19 @@ namespace Application.Application
             return await _ITvShow.SearchByName(name);
         }
 
-        public async Task<TvShow> AddTvShowToFavorites(string name)
+        public async Task<TvShow> AddTvShowToFavorites(TvShow tvShow)
         {
-            return await _ITvShow.AddTvShowToFavorites(name);
+            return await _ITvShow.AddTvShowToFavorites(tvShow);
         }
 
-        public async Task<TvShow> RemoveTvShowToFavorites(string name)
+        public async Task<TvShow> RemoveTvShowToFavorites(Favorites favorite)
         {
-            return await _ITvShow.RemoveTvShowToFavorites(name);
+            return await _ITvShow.RemoveTvShowToFavorites(favorite);
         }
 
-        public async Task<IEnumerable<Episode>> GetEpisodesByTvShow(string name)
+        public async Task<IEnumerable<Episode>> GetEpisodesByTvShowId(int tvShowId)
         {
-            return await _ITvShow.GetEpisodesByTvShow(name);
+            return await _ITvShow.GetEpisodesByTvShowId(tvShowId);
         }
     }
 }

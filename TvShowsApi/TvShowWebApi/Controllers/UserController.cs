@@ -60,11 +60,10 @@ namespace TvShowWebApi.Controllers
         [AllowAnonymous]
         [Produces("application/json")]
         [HttpPost("/api/AddUserIdentity")]
-        public async Task<IActionResult> AddUserIdentity([FromBody] Login login)
+        public async Task<IActionResult> AddUserIdentity([FromBody] SignUp login)
         {
             if (string.IsNullOrWhiteSpace(login.Name) || string.IsNullOrWhiteSpace(login.Email) || string.IsNullOrWhiteSpace(login.Password))
-                return BadRequest("There are some missing filds.");
-
+                return BadRequest("There are some missing fields.");
 
             var user = new User
             {

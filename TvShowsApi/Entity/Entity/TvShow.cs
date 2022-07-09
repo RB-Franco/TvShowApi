@@ -51,9 +51,6 @@ namespace Entity.Entity
         [Column("TS_Runtime")]
         public int Runtime { get; set; }
 
-        [Column("TS_ImageThumbnailPath")]
-        public string ImageThumbnailPath { get; set; }
-
         [Column("TS_Genres")]
         public string Genres { get; set; }
 
@@ -61,6 +58,6 @@ namespace Entity.Entity
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
         [NotMapped]
-        public List<Episode> Episodes { get; set; }
-    }       
+        public List<Episode> Episodes { get; set; } = new List<Episode>();
+    }
 }

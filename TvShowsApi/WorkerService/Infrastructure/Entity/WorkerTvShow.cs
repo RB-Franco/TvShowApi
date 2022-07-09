@@ -59,6 +59,6 @@ namespace WorkerService.Infrastructure.Entity
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
         [NotMapped]
-        public List<EpisodesModel> Episodes { get; set; }
+        public List<EpisodesModel> Episodes { get; set; } = new List<EpisodesModel>();
     }
 }
