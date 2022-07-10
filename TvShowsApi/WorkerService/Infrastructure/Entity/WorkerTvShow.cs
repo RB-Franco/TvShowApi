@@ -58,6 +58,12 @@ namespace WorkerService.Infrastructure.Entity
         [Column("TS_CreateDate")]
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
+        [Column("TS_Page")]
+        public int Page { get; set; }
+
+        [Column("TS_TotalPage")]
+        public int TotalPage { get; set; }
+
         [NotMapped]
         public List<EpisodesModel> Episodes { get; set; } = new List<EpisodesModel>();
     }

@@ -28,12 +28,24 @@ namespace Infrastructure.Repository
             }
         }
 
-        public async Task<IEnumerable<TvShow>> SearchByName(string name)
+        public async Task<IEnumerable<TvShow>> GetAllTvShowsByName(string name)
         {
             using (var context = new Context(_OptionsBuilder))
             {
                 var result = await context.TvShow
-                                        .Where(x => x.Name.Equals(name))
+                                        .Where(x => x.Name.Contains(name))
+                                        .AsNoTracking()
+                                        .ToListAsync();
+                return result;
+            }
+        }
+
+        public async Task<IEnumerable<TvShow>> GetAllTvShowsByGenere(string genere)
+        {
+            using (var context = new Context(_OptionsBuilder))
+            {
+                var result = await context.TvShow
+                                        .Where(x => x.Genres.Contains(genere))
                                         .AsNoTracking()
                                         .ToListAsync();
                 return result;
@@ -91,6 +103,7 @@ namespace Infrastructure.Repository
                 return result;
             }
         }
+
         public async Task<TvShow> GetTvShowById(int tvShowId)
         {
             using (var context = new Context(_OptionsBuilder))
@@ -103,6 +116,5 @@ namespace Infrastructure.Repository
                 return result;
             }
         }
-        
     }
 }

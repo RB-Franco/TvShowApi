@@ -16,7 +16,7 @@ namespace WorkerService
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
-                .WriteTo.File(@"C:\Users\kamil\source\repos\Publish\")
+                .WriteTo.File(@"C:\Windows\Temp\Publish\")
                 .CreateLogger();
 
             try

@@ -17,7 +17,6 @@ namespace WorkerService
     {
         private readonly ILogger<Worker> _logger;
         private readonly IWorkerTvShow _IWorkerTvShow;
-        private int SearchPage = 1;
         HttpClient client = new HttpClient();
 
 
@@ -52,9 +51,15 @@ namespace WorkerService
             }
         }
 
-        private async Task<bool> AddTvShows(TvShowModel tvShow)
+        private async Task<bool> AddTvShows(TvShowModel tvShow, int lastPage, int totalPage)
         {
-            var result = await _IWorkerTvShow.AddTvShow(tvShow);
+            var result = await _IWorkerTvShow.AddTvShow(tvShow, lastPage, totalPage);
+            return result;
+        }
+
+        private async Task<Tuple<int, int>> GetLastPage()
+        {
+            var result = await _IWorkerTvShow.GetLastPage();
             return result;
         }
 
@@ -72,10 +77,16 @@ namespace WorkerService
 
         private async Task<bool> GetTvShowsPerPage()
         {
+            var lastPage = await GetLastPage();
+
+            if (lastPage.Item2 >= 0 && (lastPage.Item1 == lastPage.Item2))
+                return true;
+
+            var page = lastPage.Item1 + 1;
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://www.episodate.com/api/most-popular?page={SearchPage}")
+                RequestUri = new Uri($"https://www.episodate.com/api/most-popular?page={page}")
             };
 
             try
@@ -85,13 +96,12 @@ namespace WorkerService
                     if (response.IsSuccessStatusCode)
                     {
                         var result = JsonConvert.DeserializeObject<ResponseTvShowModel>(await response.Content.ReadAsStringAsync());
-                        SearchPage++;
                         foreach (var item in result.TvShows)
                         {
                             var tvShowDetail = await GetTvShowsDetailsById(item.ReferenceId);
                             if (tvShowDetail != null)
                             {
-                                if (await AddTvShows(tvShowDetail))
+                                if (await AddTvShows(tvShowDetail, result.Page, result.Pages))
                                 {
                                     var added = await AddTvShowsEpisodes(tvShowDetail.Episodes, tvShowDetail.ReferenceId);
                                     if (!added)

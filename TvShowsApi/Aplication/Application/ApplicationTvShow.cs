@@ -22,9 +22,14 @@ namespace Application.Application
             return Mapper.Map<IEnumerable<TvShow>, IEnumerable<TvShowModel>>(response);
         }
 
-        public async Task<IEnumerable<TvShowModel>> SearchByName(string name)
+        public async Task<IEnumerable<TvShowModel>> GetAllTvShowsByName(string name)
         {
-            var response = await _ITvShow.SearchByName(name);
+            var response = await _ITvShow.GetAllTvShowsByName(name);
+            return Mapper.Map<IEnumerable<TvShow>, IEnumerable<TvShowModel>>(response);
+        }
+        public async Task<IEnumerable<TvShowModel>> GetAllTvShowsByGenere(string genere)
+        {
+            var response = await _ITvShow.GetAllTvShowsByGenere(genere);
             return Mapper.Map<IEnumerable<TvShow>, IEnumerable<TvShowModel>>(response);
         }
 

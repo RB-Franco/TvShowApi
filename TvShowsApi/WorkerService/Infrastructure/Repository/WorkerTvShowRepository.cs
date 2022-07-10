@@ -19,7 +19,7 @@ namespace WorkerService.Infrastructure.Repository
         {
             _optionsBuilder = new DbContextOptions<WorkenContext>();
         }
-        public async Task<bool> AddTvShow(TvShowModel tvShow)
+        public async Task<bool> AddTvShow(TvShowModel tvShow, int lastPage, int totalPage)
         {
             try
             {
@@ -119,6 +119,24 @@ namespace WorkerService.Infrastructure.Repository
                 return false;
             }
             return true;
+        }
+        public async Task<Tuple<int, int>> GetLastPage()
+        {
+            try
+            {
+                using (var context = new WorkenContext(_optionsBuilder))
+                {
+                    var result = await context.WorkerTvShow.OrderByDescending(x => x.Page)
+                                        .AsNoTracking()
+                                        .FirstOrDefaultAsync();
+                    return new Tuple<int, int>(result.Page, result.TotalPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, ex);
+                return new Tuple<int, int>(0, 0);
+            }
         }
 
         private async Task<int> GetIdTvShowByReferenceId(int referenceId)

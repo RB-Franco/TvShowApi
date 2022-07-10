@@ -30,6 +30,24 @@ namespace TvShowWebApi.Controllers
 
         [Authorize]
         [Produces("application/json")]
+        [HttpGet("/api/getAllTvShowsByName")]
+        public async Task<IActionResult> GetAllTvShowsByName([FromQuery] string name)
+        {
+            var result = await _IApplicationTvShow.GetAllTvShowsByName(name);
+            return Ok(result);
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/getAllTvShowsByGenere")]
+        public async Task<IActionResult> GetAllTvShowsByGenere([FromQuery] string genere)
+        {
+            var result = await _IApplicationTvShow.GetAllTvShowsByGenere(genere);
+            return Ok(result);
+        }
+
+        [Authorize]
+        [Produces("application/json")]
         [HttpGet("/api/GetTvShowDetailById")]
         public async Task<IActionResult> GetTvShowDetailById([FromQuery] int tvShowId)
         {

@@ -8,7 +8,8 @@ namespace Domain.Interfaces
     public interface ITvShow
     {
         Task<IEnumerable<TvShow>> GetAllTvShows();
-        Task<IEnumerable<TvShow>> SearchByName(string name);
+        Task<IEnumerable<TvShow>> GetAllTvShowsByName(string name);
+        Task<IEnumerable<TvShow>> GetAllTvShowsByGenere(string genere);
         Task<IEnumerable<Favorite>> GetAllFavoritesByUserId(string userId);
         Task<Favorite> AddTvShowToFavorites(TvShow tvshow, string userId);
         Task<bool> RemoveTvShowToFavorites(Favorite favorite);
