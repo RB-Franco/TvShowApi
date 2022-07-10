@@ -40,7 +40,10 @@ namespace WorkerService.Infrastructure.Repository
                         Description = tvShow.Description,
                         DescriptionSource = tvShow.DescriptionSource,
                         Runtime = tvShow.Runtime,
-                        Genres = string.Join(",", tvShow.Genres)
+                        Genres = string.Join(",", tvShow.Genres),
+                        Page = lastPage,
+                        TotalPage = totalPage
+
                     });
                     await context.SaveChangesAsync();
                 }
