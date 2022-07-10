@@ -80,6 +80,8 @@ After this execution, the Swagger page will open and you can use the endpoints.
 # User [/user]
 In this resource group, the endpoints for creating a new user and generating a system access token are available.
 
+The generated token is valid for 30 minutes.
+
 ### /api/AddUserIdentity (Create a new user) [POST]
 
 + Attributes (object)
