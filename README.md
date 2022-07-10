@@ -401,7 +401,6 @@ In this resource group you can list all series, series by name, genre, details o
 ## ✒️ Author
 
 * **Rodrigo Barcelos Franco** - *Documentation and development.* - (https://github.com/RB-Franco)
-* **Fulano De Tal** - *Documentação* - [fulanodetal](https://github.com/linkParaPerfil)
 
 ## 📄 Attention!
 
